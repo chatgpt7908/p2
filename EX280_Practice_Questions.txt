@@ -1,0 +1,156 @@
+### EX280 Practice Questions Set 1 ###
+
+[Set 1] Question 1
+Configure an LDAP identity provider named 'corp-ldap' using a CA certificate and bind credentials. Ensure only users from the 'devops' group can log in.
+
+[Set 1] Question 2
+Create a custom role 'project-auditor' that allows read-only access to all resources in a namespace. Bind it to user 'logan' in project 'xmen'.
+
+[Set 1] Question 3
+In project 'nebula', create a quota that limits:
+   - Max 5 pods
+   - Max 2Gi memory
+   - Max 4 CPUs
+   - Max 2 PVCs
+
+[Set 1] Question 4
+In project 'nebula', create a LimitRange that:
+   - Sets default CPU request to 200m and limit to 1 CPU
+   - Sets default memory request to 256Mi and limit to 1Gi
+
+[Set 1] Question 5
+Deploy an app 'nova' in project 'galaxy' using image 'quay.io/redhattraining/hello-openshift'. Configure it to run only on nodes labeled 'env=prod'.
+
+[Set 1] Question 6
+Deploy app 'quantum' in project 'galaxy' with a secure route using a wildcard certificate for '*.apps.ocp4.example.com'.
+
+[Set 1] Question 7
+Create a PV 'data-pv' (2Gi, RWX) backed by NFS. Bind it to a PVC 'data-pvc' in project 'galaxy'. Mount it at '/mnt/data' in deployment 'quantum'.
+
+[Set 1] Question 8
+Configure a PVC in project 'nebula' that uses a storage class with 'Retain' policy and verify it survives pod deletion.
+
+[Set 1] Question 9
+In project 'orbit', create a deny-all network policy. Then allow ingress traffic only from namespace 'control' on TCP port 8443.
+
+[Set 1] Question 10
+Create a network policy in 'orbit' to allow egress to external IP '8.8.8.8' on UDP port 53 (DNS).
+
+[Set 1] Question 11
+Create a service account 'scanner' in project 'nebula' and bind it to the 'view' role. Ensure it can only read resources.
+
+[Set 1] Question 12
+Configure SCC 'restricted-v2' for a deployment 'probe' in project 'nebula' to run as non-root with read-only root filesystem.
+
+[Set 1] Question 13
+Configure HPA for app 'nova' in 'galaxy':
+    - Min: 3, Max: 10 replicas
+    - CPU threshold: 50%
+
+[Set 1] Question 14
+Add a readiness probe to 'nova':
+    - HTTP GET '/healthz' on port 8080
+    - Initial delay: 5s, Timeout: 3s
+
+[Set 1] Question 15
+Create a ConfigMap 'env-vars' in 'nebula' with:
+    - 'APP_MODE=production'
+    - 'LOG_LEVEL=debug'
+   Mount it as environment variables in app 'probe'.
+
+[Set 1] Question 16
+Create a TLS secret 'tls-cert' in 'orbit' using 'tls.crt' and 'tls.key' files. Use it in a secure route for app 'securebox'.
+
+[Set 1] Question 17
+Create a CronJob 'backup' in 'nebula' that runs every day at 2:30 AM using image 'busybox' and command 'echo backup'.
+
+[Set 1] Question 18
+Install the 'Elasticsearch Operator' in 'openshift-operators-redhat' using the stable channel.
+
+[Set 1] Question 19
+Create a project template that includes:
+    - Default LimitRange (100m CPU, 128Mi memory)
+    - Default ResourceQuota (max 5 pods, 1Gi memory)
+
+[Set 1] Question 20
+Configure OpenShift to use the above template for all new projects.
+
+[Set 1] Question 21
+Use 'must-gather' to collect cluster diagnostics and store it at '/root/cluster-dump.tar.gz'.
+
+[Set 1] Question 22
+Enable Prometheus metrics scraping for app 'nova' by adding appropriate annotations to its deployment.
+
+### EX280 Practice Questions Set 2 - Advanced ###
+
+[Set 2 - Advanced] Question 1
+Integrate OpenShift with an external GitHub OAuth provider. Allow only users from the 'redhat-org' GitHub organization to log in.
+
+[Set 2 - Advanced] Question 2
+Create a role 'build-approver' that allows approving builds but not starting them. Bind it to user 'jenkins' in project 'cicd'.
+
+[Set 2 - Advanced] Question 3
+In project 'phoenix', enforce a quota that:
+   - Allows max 2 deployments
+   - Max 1Gi ephemeral storage
+   - Max 3 secrets
+
+[Set 2 - Advanced] Question 4
+Deploy a pod 'logger' in project 'monitoring' with two containers:
+   - 'app': nginx
+   - 'sidecar': busybox that tails '/var/log/nginx/access.log'
+
+[Set 2 - Advanced] Question 5
+Deploy app 'gravity' in project 'space' with hard node affinity to nodes labeled 'zone=us-west' and anti-affinity to 'zone=us-east'.
+
+[Set 2 - Advanced] Question 6
+Create a PDB in project 'space' for app 'gravity' that ensures at least 1 pod is always available during voluntary disruptions.
+
+[Set 2 - Advanced] Question 7
+Configure HPA for app 'nova' in 'galaxy' using custom metrics from Prometheus (e.g., 'http_requests_per_second').
+
+[Set 2 - Advanced] Question 8
+Deploy app 'bootstrapper' in project 'infra' with an init container that downloads a config file before the main container starts.
+
+[Set 2 - Advanced] Question 9
+Enable Istio sidecar injection in project 'meshzone'. Deploy app 'echo' and verify traffic is routed through Envoy proxy.
+
+[Set 2 - Advanced] Question 10
+Expand PVC 'data-pvc' in project 'galaxy' from 2Gi to 5Gi without downtime.
+
+[Set 2 - Advanced] Question 11
+Use OpenShift’s 'cert-manager' to issue a Let's Encrypt certificate for app 'securebox' in project 'orbit'.
+
+[Set 2 - Advanced] Question 12
+Configure app 'private-app' in project 'vault' to pull image from a private registry using a Docker config secret.
+
+[Set 2 - Advanced] Question 13
+Deploy a validating webhook that blocks creation of pods with 'hostNetwork: true'.
+
+[Set 2 - Advanced] Question 14
+Install the 'Kiali Operator' via OLM in 'openshift-operators' and configure it to monitor the 'meshzone' namespace.
+
+[Set 2 - Advanced] Question 15
+Create a custom SCC 'restricted-logs' that allows writing to '/var/log/app' and assign it to app 'logger' in 'monitoring'.
+
+[Set 2 - Advanced] Question 16
+Deploy app 'hotreload' in project 'devops' that reloads config on-the-fly when the mounted ConfigMap changes.
+
+[Set 2 - Advanced] Question 17
+Create a CronJob 'logrotate' in project 'infra' that mounts a PVC and rotates logs every 6 hours.
+
+[Set 2 - Advanced] Question 18
+Enable user workload monitoring and deploy a PrometheusRule in 'devops' to alert when CPU usage > 80% for 5 minutes.
+
+[Set 2 - Advanced] Question 19
+Create two projects 'team-a' and 'team-b'. Ensure network isolation using NetworkPolicies and restrict access using RBAC.
+
+[Set 2 - Advanced] Question 20
+Deploy ArgoCD in 'argocd' namespace and sync a sample app from a GitHub repo.
+
+[Set 2 - Advanced] Question 21
+Use 'oadp' (OpenShift API for Data Protection) to backup project 'phoenix' and restore it to 'phoenix-restore'.
+
+[Set 2 - Advanced] Question 22
+Run a pre-upgrade check using 'oc adm upgrade' and generate a report of incompatible APIs and deprecated objects.
+
